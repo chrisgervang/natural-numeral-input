@@ -5,7 +5,7 @@
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
-      inlineMath: [["$","$"],["\\(","\\)"]]
+      inlineMath: [["`","`"],["\\(","\\)"]]
     }
   });
 </script>
@@ -36,8 +36,8 @@
     //  The onchange event handler that typesets the
     //  math entered by the user
     //
-    window.UpdateMath = function (TeX) {
-      QUEUE.Push(["Text",math,"\\displaystyle{"+TeX+"}"]);
+    window.UpdateMath = function (AM) {
+      QUEUE.Push(["Text",math,AM]);
     }
   })();
 </script>
@@ -47,7 +47,7 @@ Type some TeX code:
 <p>
 
 <div id="MathOutput">
-You typed: ${}$
+You typed: ``
 </div>
 
 </body>
