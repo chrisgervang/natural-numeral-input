@@ -13,42 +13,42 @@ $(function () {
             return false;
         }
     }
-    //HACK: In case that the users activate/deactivate CapsLock change the status
-    //and display the correct status ONLY if the user already entered any value
-    function changeCapsLock(e) {
-        //e.keyCode == 20 Caps Lock key
-        if (typeof capsLockState != 'undefined' && e.keyCode == 20) {
-            capsLockState = !capsLockState;
-        }
-    }
 
     function is101usActive(e) {
-        //kc = e.keyCode?e.keyCode:e.which;
-        //if capslock is active than return true
-        if (typeof capsLockState === 'undefined') {
-            capsLockState = checkCapsLock(e);
-            console.log("is 101 Active: " + capsLockState + " " + e.which + " " + e.keyCode);
-        } else if (typeof capsLockState != 'undefined' && e.keyCode == 20) {
-            capsLockState = !capsLockState;
-            console.log("is 101 Active: " + capsLockState + " " + e.which + " " + e.keyCode);
-        }
-        
+        capsLockState = checkCapsLock(e);
         return capsLockState;
     }
 
+    keyboards = {
+        "math": 
+            {
+                97: "pi",
+                65: "sqrt"
+            },
+        "standard":
+            {
+                97: "a",
+                65: "A"
+            }
+    };
+
+
     $(".type-in").keypress(function (e) {
-
-
+        console.log("ANSWER:", keyboards.name["math"].e.which);
         if (is101usActive(e)) {
+            console.log("NORMAL INPUT");
             userString = $(".type-in").val() + String.fromCharCode(e.which);
+        } else {
+            userString = 
+            console.log("MATH INPUT");
         }
         $(".preview-in").text(userString);
 
 
     });
     $(".type-in").keydown(function (e) {
-        console.log("event fired: " + e.keyCode);
-        is101usActive(e);
+        // console.log("event fired: " + e.keyCode);
+        // is101usActive(e);
         if (e.keyCode === 8) {
             console.log("BACK");
             var temp = userString;
