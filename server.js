@@ -27,7 +27,7 @@ var express = require("express")
  name: "participantName"
  }
  */
-var participants = []
+var participants = [];
 
 /* Server config */
 
