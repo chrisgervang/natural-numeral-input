@@ -1,7 +1,8 @@
 <html>
 <head>
 <title>MathJax Dynamic Math Test Page</title>
-
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
@@ -16,33 +17,9 @@
 </head>
 <body>
 
-<script>
-  //
-  //  Use a closure to hide the local variables from the
-  //  global namespace
-  //
-  (function () {
-    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
-    var math = null;                // the element jax for the math output.
+<script src="MathJaxAPI.js"></script>
 
-    //
-    //  Get the element jax when MathJax has produced it.
-    //
-    QUEUE.Push(function () {
-      math = MathJax.Hub.getAllJax("MathOutput")[0];
-    });
-
-    //
-    //  The onchange event handler that typesets the
-    //  math entered by the user
-    //
-    window.UpdateMath = function (AM) {
-      QUEUE.Push(["Text",math,AM]);
-    }
-  })();
-</script>
-
-Type some TeX code:
+Type some ascii math code:
 <input id="MathInput" size="50" onchange="UpdateMath(this.value)" />
 <p>
 
