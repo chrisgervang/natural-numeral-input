@@ -41,7 +41,7 @@ app.set("port", 8080);
 app.set("views", __dirname + "/views");
 
 //View engine is Jade
-app.set("view engine", "jade");
+app.engine('html', require('ejs').renderFile);
 
 //Specify where the static content is
 app.use(express.static("public", __dirname + "/public"));

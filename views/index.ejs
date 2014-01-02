@@ -1,0 +1,33 @@
+<html>
+
+<head>
+	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans'>
+	<link rel='stylesheet' href='/css/style.css'>
+	<script src='/js/socket.io.min.js'></script>
+	<script src='/js/jquery-1.9.1.min.js'></script>
+	<script src='/js/index.js'></script>
+	<title>Super Awesome ChatRoom</title>
+</head>
+
+<body>
+	<h1>MathJax Chatroom</h1>
+	<div>
+		<div class="inlineBlock">
+			<span>Your name:</span>
+				<input id="name" type="text" value="Anonymous"></input>
+				<br>
+				<form id="messageForm">
+					<textarea rows="4" cols="50" placeholder="Share something!" maxlength="200" id="outgoingMessage"></textarea>
+					<input type="button" value="Share" disabled=true id="send"></input>
+				</form>
+		</div>
+		<div class="inlineBlock topAligned">
+			<b>Participants</b>
+			<br>
+			<div id="participants"></div>
+		</div>
+	</div>
+	<div id="messages"></div>
+</body>
+</html>
+

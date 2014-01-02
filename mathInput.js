@@ -1,4 +1,9 @@
 $(function() {
+	for (var i = 0; i <= 400; i++) {
+		if (String.fromCharCode(i) != '')
+			console.log(i, String.fromCharCode(i));
+	};
+
 	$(document).unbind('keydown').bind('keydown', function (event) {
 		var doPrevent = false;
 		if (event.keyCode === 8) {
