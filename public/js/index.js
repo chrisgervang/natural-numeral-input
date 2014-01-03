@@ -67,6 +67,8 @@ function init() {
     var message = data.message;
     var name = data.name;
     $('#messages').prepend('<b>' + name + '</b><br />' + message + '<hr />');
+    Preview.init("messages");
+
   });
 
   /*

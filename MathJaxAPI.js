@@ -10,8 +10,8 @@ var Preview = {
 	    //
 	    //  Get the preview and buffer DIV's
 	    //
-	    Init: function () {
-	      this.preview = document.getElementById("MathPreview");
+	    Init: function (id) {
+	      this.preview = document.getElementById(id);
 	      this.buffer = document.getElementById("MathBuffer");
 	    },
 

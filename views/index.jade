@@ -6,6 +6,7 @@ html
     script(src='/js/socket.io.min.js')
     script(src='/js/jquery-1.9.1.min.js')
     script(src='/js/index.js')
+    script(src='MathJaxAPI.js')
     title Super Awesome Chatroom
   body
     h1 MathJax Chatroom
@@ -22,3 +23,7 @@ html
         br
         div#participants
     div#messages
+    div#MathBuffer
+
+    script(type='text/javascript').
+      Preview.Init("messages");
