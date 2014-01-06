@@ -31,103 +31,63 @@
 //TRY FADE IN NEXT KEYBOARD
 
 var standardKeys = {
-	13: "\n",
-	32: " ",
-	33: "!",
-	34: "\"",
-	35: "#",
-	36: "$",
-	37: "%",
-	38: "&",
-	39: "\'",
-	40: "\(",
-	41: "\)",
-	42: "*",
-	43: "+",
-	44: ",",
-	45: "-",
-	46: ".",
-	47: "/",
-	48: "0",
-	49: "1",
-	50: "2",
-	51: "3",
-	52: "4",
-	53: "5",
-	54: "6",
-	55: "7",
-	56: "8",
-	57: "9",
-	58: ":",
-	59: ";",
-	60: "<",
-	61: "=",
-	62: ">",
-	63: "?",
-	64: "@",
-	65: "A",
-	66: "B",
-	67: "C",
-	68: "D",
-	69: "E",
-	70: "F",
-	71: "G",
-	72: "H",
-	73: "I",
-	74: "J",
-	75: "K",
-	76: "L",
-	77: "M",
-	78: "N",
-	79: "O",
-	80: "P",
-	81: "Q",
-	82: "R",
-	83: "S",
-	84: "T",
-	85: "U",
-	86: "V",
-	87: "W",
-	88: "X",
-	89: "Y",
-	90: "Z",
-	91: "[",
-	92: "\\",
-	93: "]",
-	94: "^",
-	95: "_",
-	96: "`",
-	97: "a",
-	98: "b",
-	99: "c",
-	100: "d",
-	101: "e",
-	102: "f",
-	103: "g",
-	104: "h",
-	105: "i",
-	106: "j",
-	107: "k",
-	108: "l",
-	109: "m",
-	110: "n",
-	111: "o",
-	112: "p",
-	113: "q",
-	114: "r",
-	115: "s",
-	116: "t",
-	117: "u",
-	118: "v",
-	119: "w",
-	120: "x",
-	121: "y",
-	122: "z",
-	123: "{",
-	124: "|",
-	125: "}",
-	126: "~"
-};
+				"config": {
+					"charFamily": "standard",
+					"setMargin": false
+				},
+				"mapping": {
+					// row 																// chars in order of appear on keyboard (not related to shift key in any way)
+					0: {"pri": 49,"sec": 33, "sb": true}, // 1!
+					1: {"pri": 50, "sec": 64, "sb": true}, // 2@
+					2: {"pri": 51, "sec": 35, "sb": true}, // 3#
+					3: {"pri": 52, "sec": 36, "sb": true}, // 4$
+					4: {"pri": 53, "sec": 37, "sb": true}, // 5%
+					5: {"pri": 54, "sec": 94, "sb": true}, // 6^
+					6: {"pri": 55, "sec": 38, "sb": true}, // 7&
+					7: {"pri": 56, "sec": 42, "sb": true}, // 8*
+					8: {"pri": 57, "sec": 40, "sb": true}, // 9(
+					9: {"pri": 48, "sec": 41, "sb": true}, // 0)
+					10: {"pri": 45, "sec": 95, "sb": true}, // -_
+					11: {"pri": 61, "sec": 43, "sb": true}, // =+
+					// row 2
+					12: {"pri": 81, "sec": 113, "sb": false}, // Qq
+					13: {"pri": 87, "sec": 119, "sb": false},	// Ww
+					14: {"pri": 69, "sec": 101, "sb": false}, // Ee
+					15: {"pri": 82, "sec": 114, "sb": false}, // Rr
+					16: {"pri": 84, "sec": 116, "sb": false}, // Tt
+					17: {"pri": 89, "sec": 121, "sb": false}, // Yy
+					18: {"pri": 85, "sec": 117, "sb": false}, // Uu
+					19: {"pri": 73, "sec": 105, "sb": false}, // Ii
+					20: {"pri": 79, "sec": 111, "sb": false}, // Oo
+					21: {"pri": 80, "sec": 112, "sb": false}, // Pp
+					22: {"pri": 91, "sec": 123, "sb": true}, // {[
+					23: {"pri": 93, "sec": 125, "sb": true}, // }]
+					//24: {"pri": 124, "sec": 92, "sb": false}, // |\ - not in this keyboard
+					// row 3
+					24: {"pri": 65, "sec": 97, "sb": false}, // Aa
+					25: {"pri": 83, "sec": 115, "sb": false}, // Ss
+					26: {"pri": 68, "sec": 100, "sb": false}, // Dd
+					27: {"pri": 70, "sec": 102, "sb": false}, // Ff
+					28: {"pri": 71, "sec": 103, "sb": false}, // Gg
+					29: {"pri": 72, "sec": 104, "sb": false}, // Hh
+					30: {"pri": 74, "sec": 106, "sb": false}, // Jj
+					31: {"pri": 75, "sec": 107, "sb": false}, // Kk
+					32: {"pri": 76, "sec": 77, "sb": false}, // Ll
+					33: {"pri": 59, "sec": 58, "sb": true}, // ;:
+					34: {"pri": 39, "sec": 34, "sb": true}, // '"
+					// row 4
+					35: {"pri": 90, "sec": 122, "sb": false}, // Zz
+					36: {"pri": 88, "sec": 120, "sb": false}, // Xx
+					37: {"pri": 67, "sec": 99, "sb": false}, // Cc
+					38: {"pri": 86, "sec": 118, "sb": false}, // Vv
+					39: {"pri": 66, "sec": 98, "sb": false}, // Bb
+					40: {"pri": 78, "sec": 110, "sb": false}, // Nn
+					41: {"pri": 77, "sec": 109, "sb": false}, // Mm
+					42: {"pri": 44, "sec": 60, "sb": true}, // <,
+					43: {"pri": 46, "sec": 62, "sb": true}, // >.
+					44: {"pri": 47, "sec": 63, "sb": true}, // ?/
+			}
+		}
 
 $(function() {
 
@@ -149,7 +109,9 @@ $(function() {
   					boxID++;
 	  			}
 			});
+			
 			keyCount = boxID;
+			
 			$('#keyboardContainer').animate({
 	      		bottom: '+=342'
 	  	}, 500);
@@ -202,22 +164,9 @@ $(function() {
 		layouts: {},
 		currentLayout: "",
 		keyCount: 0,
-		map: {
-				0: [49, 33, true],
-				1: [50, 64, true],
-				2: [51, 35, true],
-				3: [52, 36, true],
-				4: [53, 37, true],
-				5: [54, 94, true],
-				6: [55, 38, true],
-				7: [56, 42, true],
-				8: [57, 40, true],
-				9: [48, 42, true],
-				10: [45, 95, true],
-				11: [43, 61, true],
-				12:
-			};
-		createLayout: function(layoutName, values) {
+		//map notes:
+		//{1st value (primary), 2nd value (secondary), show both?, margin-top (only if type is )} - if sb != true, then show one.
+		createLayout: function(layoutName, keyJSON) {
 			/////this.layouts[layoutName] = values;
 			//put values (unicode's) in proper postion, and then add it to layouts object.
 			//make a reference map for unicode -> proper "key" div
@@ -230,25 +179,38 @@ $(function() {
 			*/
 			//sort the new layout
 
-
+/*
 			keyCount
 			for (var i = 0; i < keyCount; i++) {
 				map.push(i:[])
 			};
-
+*/
+			this.layouts[layoutName] = keyJSON;
+			currentLayout = layoutName;
 
 		},
 		switchMainLayoutTo: function(layoutName) {
 			var keyDivs = $(".key").get();
 			var layoutValues = this.layouts[layoutName]
+			var count = 0;
 			
 			// /var keys = Object.keys(layoutName).sort();
 			console.log(layoutValues, keyDivs);
 			$(".key").each(function(){
+					
+					var primaryChar = layoutValues.mapping[count].pri;
+					var showBoth = layoutValues.mapping[count].sb;
+					var secondaryChar = layoutValues.mapping[count].sec;
+					var keyValue;
+					if (!showBoth) {
+						keyValue = '<div class="keyValue standard">'+ String.fromCharCode(primaryChar) +'</div>';
+					} else {
+						keyValue = '<div class="keyValue show-both">' + String.fromCharCode(secondaryChar) + '<br>' + String.fromCharCode(primaryChar) + '</div>';
+					}
+					$(this).append(keyValue);
+					count++;
 				
-				var keyValue = '<div class="keyValue">'+ layoutName +'</div>';
-				$(this).append(keyValue);
-				// this.layouts[layoutName].
+
 			});
 		},
 		switchReferenceLayout: function(layoutName) {
@@ -272,7 +234,10 @@ $(function() {
 	keyboard.createLayout("US101", standardKeys);
 	keyboard.switchMainLayoutTo("US101");
 
-
+	//Centering style notes for each key: 
+	// - we can center anything width wise easy: text-align: center; line-height: 55px;
+	// - vertical centering for normal text: vertical-align: middle;
+	// - vertical centering for MathJax: margin-top: #%;
 
 	//////////////EVENTS///////////////
 	$(".minKeyboard").toggle(function(){
@@ -286,5 +251,31 @@ $(function() {
 	  }, 300);
 	  keyboard.keysIn("up-down");
 	});
-		
+
+	// '~' minimize/maximize keyboard
+	$(document).keypress(function(e) {
+		if (e.which == 126) {
+			$('.minKeyboard').click();
+		}
+		console.log(e.which);
+		var whichKey = keyboard.layouts[currentLayout].mapping;
+		console.log(whichKey);
+		$(".key").addClass(":active");
+	});
+	
+	// $('.key').mousedown(function(){
+	// 	console.log($(this).attr('class').split(' ')[1]);
+	// 	var keyNum = "." + $(this).attr('class').split(' ')[1];
+	// 	$(keyNum).
+	// });
 });
+
+
+/*
+In any text box one can insert and delete text at the cursor point.
+The cursor position is the only other significant thing.
+Write three melthods:
+- change cursor position
+- insert @ cursor position 
+- delete @ cursor position
+*/ 
