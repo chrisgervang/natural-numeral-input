@@ -362,7 +362,7 @@ $(function() {
 	});
 	
 	$(document).keyup(function(e){
-		if(!capLock(e) && $(".0").hasClass("capslock")){
+		if(!capLock(e) && e.which == 20 && $(".0").hasClass("capslock")){
 			console.log("caps off");
 			for(var i = 0; i <= 44; i++){
 				$("." + i).removeClass("capslock");
