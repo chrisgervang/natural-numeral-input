@@ -30,6 +30,60 @@
 //SWIPE SIDE TO SIDE FOR DIFFERENT KEYBOARDS
 //TRY FADE IN NEXT KEYBOARD
 
+// key code in, string out
+var mathMap = {
+	// row 																// chars in order of appear on keyboard (not related to shift key in any way)
+					0: {"pri": "","sec": "", "sb": true}, // 1!
+					1: {"pri": "", "sec": "", "sb": true}, // 2@
+					2: {"pri": "", "sec": "", "sb": true}, // 3#
+					3: {"pri": "", "sec": "", "sb": true}, // 4$
+					4: {"pri": "", "sec": "", "sb": true}, // 5%
+					5: {"pri": "", "sec": "", "sb": true}, // 6^
+					6: {"pri": "", "sec": "", "sb": true}, // 7&
+					7: {"pri": "", "sec": "", "sb": true}, // 8*
+					8: {"pri": "", "sec": "", "sb": true}, // 9(
+					9: {"pri": "", "sec": "", "sb": true}, // 0)
+					10: {"pri": "", "sec": "", "sb": true}, // -_
+					11: {"pri": "", "sec": "", "sb": true}, // =+
+					// row 2
+					12: {"pri": "", "sec": "", "sb": false}, // Qq
+					13: {"pri": "", "sec": "", "sb": false},	// Ww
+					14: {"pri": "", "sec": "", "sb": false}, // Ee
+					15: {"pri": "", "sec": "", "sb": false}, // Rr
+					16: {"pri": "", "sec": "", "sb": false}, // Tt
+					17: {"pri": "", "sec": "", "sb": false}, // Yy
+					18: {"pri": "", "sec": "", "sb": false}, // Uu
+					19: {"pri": "int", "sec": "", "sb": false}, // Ii
+					20: {"pri": "", "sec": "", "sb": false}, // Oo
+					21: {"pri": "", "sec": "", "sb": false}, // Pp
+					22: {"pri": "", "sec": "", "sb": true}, // {[
+					23: {"pri": "", "sec": "", "sb": true}, // }]
+					//24: {"pri": 124, "sec": 92, "sb": false}, // |\ - not in this keyboard
+					// row 3
+					24: {"pri": "", "sec": "", "sb": false}, // Aa
+					25: {"pri": "sqrt", "sec": "", "sb": false}, // Ss
+					26: {"pri": "", "sec": "", "sb": false}, // Dd
+					27: {"pri": "", "sec": "", "sb": false}, // Ff
+					28: {"pri": "", "sec": "", "sb": false}, // Gg
+					29: {"pri": "", "sec": "", "sb": false}, // Hh
+					30: {"pri": "", "sec": "", "sb": false}, // Jj
+					31: {"pri": "", "sec": "", "sb": false}, // Kk
+					32: {"pri": "", "sec": "", "sb": false}, // Ll
+					33: {"pri": "", "sec": "", "sb": true}, // ;:
+					34: {"pri": "", "sec": "", "sb": true}, // '"
+					// row 4
+					35: {"pri": "", "sec": "", "sb": false}, // Zz
+					36: {"pri": "", "sec": "", "sb": false}, // Xx
+					37: {"pri": "", "sec": "", "sb": false}, // Cc
+					38: {"pri": "", "sec": "", "sb": false}, // Vv
+					39: {"pri": "", "sec": "", "sb": false}, // Bb
+					40: {"pri": "", "sec": "", "sb": false}, // Nn
+					41: {"pri": "", "sec": "", "sb": false}, // Mm
+					42: {"pri": "", "sec": "", "sb": true}, // <,
+					43: {"pri": "", "sec": "", "sb": true}, // >.
+					44: {"pri": "", "sec": "", "sb": true}, // ?/
+}
+
 var standardKeys = {
 				"config": {
 					"charFamily": "standard",
@@ -37,18 +91,18 @@ var standardKeys = {
 				},
 				"mapping": {
 					// row 																// chars in order of appear on keyboard (not related to shift key in any way)
-					0: {"pri": 49,"sec": 33, "sb": true}, // 1!
-					1: {"pri": 50, "sec": 64, "sb": true}, // 2@
-					2: {"pri": 51, "sec": 35, "sb": true}, // 3#
-					3: {"pri": 52, "sec": 36, "sb": true}, // 4$
-					4: {"pri": 53, "sec": 37, "sb": true}, // 5%
-					5: {"pri": 54, "sec": 94, "sb": true}, // 6^
-					6: {"pri": 55, "sec": 38, "sb": true}, // 7&
-					7: {"pri": 56, "sec": 42, "sb": true}, // 8*
-					8: {"pri": 57, "sec": 40, "sb": true}, // 9(
-					9: {"pri": 48, "sec": 41, "sb": true}, // 0)
-					10: {"pri": 45, "sec": 95, "sb": true}, // -_
-					11: {"pri": 61, "sec": 43, "sb": true}, // =+
+					0: {"pri": 33,"sec": 49, "sb": true}, // 1!
+					1: {"pri": 64, "sec": 50, "sb": true}, // 2@
+					2: {"pri": 35, "sec": 51, "sb": true}, // 3#
+					3: {"pri": 36, "sec": 52, "sb": true}, // 4$
+					4: {"pri": 37, "sec": 53, "sb": true}, // 5%
+					5: {"pri": 94, "sec": 54, "sb": true}, // 6^
+					6: {"pri": 38, "sec": 55, "sb": true}, // 7&
+					7: {"pri": 42, "sec": 56, "sb": true}, // 8*
+					8: {"pri": 40, "sec": 57, "sb": true}, // 9(
+					9: {"pri": 41, "sec": 48, "sb": true}, // 0)
+					10: {"pri": 95, "sec": 45, "sb": true}, // -_
+					11: {"pri": 43, "sec": 61, "sb": true}, // =+
 					// row 2
 					12: {"pri": 81, "sec": 113, "sb": false}, // Qq
 					13: {"pri": 87, "sec": 119, "sb": false},	// Ww
@@ -205,7 +259,7 @@ $(function() {
 					if (!showBoth) {
 						keyValue = '<div class="keyValue standard">'+ String.fromCharCode(primaryChar) +'</div>';
 					} else {
-						keyValue = '<div class="keyValue show-both">' + String.fromCharCode(secondaryChar) + '<br>' + String.fromCharCode(primaryChar) + '</div>';
+						keyValue = '<div class="keyValue show-both">' + String.fromCharCode(primaryChar) + '<br>' + String.fromCharCode(secondaryChar) + '</div>';
 					}
 					$(this).append(keyValue);
 					count++;
@@ -243,7 +297,7 @@ $(function() {
 		3: [10, 150]
 	};
 	
-	/////////INITILIZE///////////
+	/////////INITIALIZE///////////
 	
 	//width/height of each square
 	var squareSize = 55;
@@ -251,7 +305,6 @@ $(function() {
 	//keyboard.keysIn("up-down");
 	keyboard.createLayout("US101", standardKeys);
 	keyboard.switchMainLayoutTo("US101");
-
 	//Centering style notes for each key: 
 	// - we can center anything width wise easy: text-align: center; line-height: 55px;
 	// - vertical centering for normal text: vertical-align: middle;
@@ -281,13 +334,49 @@ $(function() {
 		var key = keyboard.findKeyFromCharCode(e.which, whichKey);
 		console.log("KEY: ", key);
 
+		active(e.which, key);
+
 		//console.log(whichKey);
 		$("." + key).addClass("active");
 		setTimeout(function(){
 			$("." + key).removeClass("active")
 		},30);
+
+		return false;
+	});
+
+	$(document).keydown(function(e){
+		if(e.which == 20 && !$(".0").hasClass("capslock")){
+			console.log("caps on");
+			for(var i = 0; i <= 44; i++){
+				$("." + i).addClass("capslock");
+			}
+		}
+
+		if(e.which == 16){
+			console.log("shift down");
+			for(var i = 0; i <= 44; i++){
+				$("." + i).addClass("shifted");
+			}
+		}
 	});
 	
+	$(document).keyup(function(e){
+		if(!capLock(e) && $(".0").hasClass("capslock")){
+			console.log("caps off");
+			for(var i = 0; i <= 44; i++){
+				$("." + i).removeClass("capslock");
+			}
+		}
+
+		if(e.which == 16){
+			console.log("shift up");
+			for(var i = 0; i <= 44; i++){
+				$("." + i).removeClass("shifted");
+			}
+		}
+	});
+
 	/*$(document).keyup(function(e){
 		var whichKey = keyboard.layouts[currentLayout].mapping;
 		var key = keyboard.findKeyFromCharCode(e.which, whichKey);
@@ -302,11 +391,20 @@ $(function() {
 
 
 
-	// $('.key').mousedown(function(){
-	// 	console.log($(this).attr('class').split(' ')[1]);
-	// 	var keyNum = "." + $(this).attr('class').split(' ')[1];
-	// 	$(keyNum).
-	// });
+	$('.key').mousedown(function(e){
+		var num = $(this).attr('class').split(' ')[1]
+		console.log("Click: " + num);
+	 	var keyNum = "." + num;
+	 	$(keyNum)
+
+	 	if(e.shiftKey){
+	 		active(standardKeys.mapping[num].pri, num);
+	 	}else{
+	 		active(standardKeys.mapping[num].sec, num);
+	 	}
+
+	 	
+	 });
 });
 
 /*
@@ -318,6 +416,24 @@ Write three melthods:
 - delete @ cursor position
 */ 
 
+function active(charcode, num){
+	if($(".0").hasClass("capslock")){
+		insertAtCaret("input", mathMap[num].pri);
+	}else{
+		insertAtCaret("input", String.fromCharCode(charcode));
+	}
+	
+}
+
+function capLock(e){
+ kc = e.keyCode?e.keyCode:e.which;
+ sk = e.shiftKey?e.shiftKey:((kc == 16)?true:false);
+ return ((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk);
+}
+
+function isPageHidden(){
+     return document.hidden || document.msHidden || document.webkitHidden || document.mozHidden;
+}
 
 function insertAtCaret(areaId,text) {
     var txtarea = document.getElementById(areaId);

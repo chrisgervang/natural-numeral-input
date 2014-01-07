@@ -7,7 +7,7 @@ body {
 	position: absolute;
 	width: 1000px;
 	height: 350px;
-	background-color: #3498DB;
+	background-color: #558C89;
 	left: 50%;
 	margin-left: -35%;
 	border-style: solid;
@@ -48,7 +48,7 @@ body {
 	/*overflow: hidden;*/
 
 	margin: 5px;
-	background-color: #ECF0F1;
+	background-color: #ECECEA;
 	border-style: solid;
 	border-width: 3px;
 	border-color: #fff;
@@ -65,12 +65,22 @@ body {
 }
 
 .key:active {
-	background-color: #7F8C8D;
-	color: #ECF0F1;
+	background-color: #D9853B;
+	color: #ECECEA;
 }
 .key.active {
-	background-color: #7F8C8D;
-	color: #ECF0F1;
+	background-color: #D9853B;
+	color: #ECECEA;
+}
+
+.key.shifted {
+	background-color: #74AFAD;
+	color: #ECECEA;
+}
+
+.key.capslock {
+	background-color: #A2AB58;
+	color: #ECECEA;
 }
 
 .keyValue {
