@@ -68,6 +68,10 @@ body {
 	background-color: #7F8C8D;
 	color: #ECF0F1;
 }
+.key.active {
+	background-color: #7F8C8D;
+	color: #ECF0F1;
+}
 
 .keyValue {
 	text-align: center;

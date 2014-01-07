@@ -60,7 +60,7 @@ var standardKeys = {
 					19: {"pri": 73, "sec": 105, "sb": false}, // Ii
 					20: {"pri": 79, "sec": 111, "sb": false}, // Oo
 					21: {"pri": 80, "sec": 112, "sb": false}, // Pp
-					22: {"pri": 91, "sec": 123, "sb": true}, // {[
+					22: {"pri": 91, "sec": 219, "sb": true}, // {[
 					23: {"pri": 93, "sec": 125, "sb": true}, // }]
 					//24: {"pri": 124, "sec": 92, "sb": false}, // |\ - not in this keyboard
 					// row 3
@@ -215,6 +215,21 @@ $(function() {
 		},
 		switchReferenceLayout: function(layoutName) {
 
+		},
+		findKeyFromCharCode: function(keyCode, keyCodeMap) {
+			//console.log("KEY MAP", keyCodeMap, keyCode);
+			var returnKey = -1;
+			jQuery.each(keyCodeMap, function(key, value){
+				var pri = value.pri;
+				var sec = value.sec;
+				//console.log(pri, sec, key);
+				
+				if (pri == keyCode || sec == keyCode) {
+					//console.log("YAY");
+					returnKey = key;
+				} 
+			});
+			return returnKey; //if no match
 		}
 	};
 
@@ -257,10 +272,25 @@ $(function() {
 		if (e.which == 126) {
 			$('.minKeyboard').click();
 		}
+		
+	});
+	
+	$(document).keydown(function(e){
 		console.log(e.which);
 		var whichKey = keyboard.layouts[currentLayout].mapping;
-		console.log(whichKey);
-		$(".key").addClass(":active");
+		var key = keyboard.findKeyFromCharCode(e.which, whichKey);
+		console.log("KEY: ", key);
+
+		//console.log(whichKey);
+		$("." + key).addClass("active");
+	});
+	$(document).keyup(function(e){
+		var whichKey = keyboard.layouts[currentLayout].mapping;
+		var key = keyboard.findKeyFromCharCode(e.which, whichKey);
+		console.log("KEY: ", key);
+
+		//console.log(whichKey);
+		$("." + key).removeClass("active");
 	});
 	
 	// $('.key').mousedown(function(){
