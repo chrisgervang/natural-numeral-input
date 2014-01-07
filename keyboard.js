@@ -60,7 +60,7 @@ var standardKeys = {
 					19: {"pri": 73, "sec": 105, "sb": false}, // Ii
 					20: {"pri": 79, "sec": 111, "sb": false}, // Oo
 					21: {"pri": 80, "sec": 112, "sb": false}, // Pp
-					22: {"pri": 91, "sec": 219, "sb": true}, // {[
+					22: {"pri": 91, "sec": 123, "sb": true}, // {[
 					23: {"pri": 93, "sec": 125, "sb": true}, // }]
 					//24: {"pri": 124, "sec": 92, "sb": false}, // |\ - not in this keyboard
 					// row 3
@@ -273,9 +273,6 @@ $(function() {
 			$('.minKeyboard').click();
 		}
 		
-	});
-	
-	$(document).keydown(function(e){
 		console.log(e.which);
 		var whichKey = keyboard.layouts[currentLayout].mapping;
 		var key = keyboard.findKeyFromCharCode(e.which, whichKey);
@@ -283,15 +280,19 @@ $(function() {
 
 		//console.log(whichKey);
 		$("." + key).addClass("active");
+		setTimeout(function(){
+			$("." + key).removeClass("active")
+		},30);
 	});
-	$(document).keyup(function(e){
+	
+	/*$(document).keyup(function(e){
 		var whichKey = keyboard.layouts[currentLayout].mapping;
 		var key = keyboard.findKeyFromCharCode(e.which, whichKey);
 		console.log("KEY: ", key);
 
 		//console.log(whichKey);
 		$("." + key).removeClass("active");
-	});
+	});*/
 	
 	// $('.key').mousedown(function(){
 	// 	console.log($(this).attr('class').split(' ')[1]);
