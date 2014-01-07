@@ -90,7 +90,7 @@ var standardKeys = {
 		}
 
 $(function() {
-
+	
 
 	keyboard = {
 		init: function (objArray) {
@@ -233,7 +233,10 @@ $(function() {
 		}
 	};
 
+
+	//builds keyboard
 	var obj = {
+		//row: [keys, leftbuffer]
 		0: [12,60],
 		1: [12, 95],
 		2: [11, 115],
@@ -293,13 +296,17 @@ $(function() {
 		$("." + key).removeClass("active");
 	});
 	
+	
+
+
+
+
 	// $('.key').mousedown(function(){
 	// 	console.log($(this).attr('class').split(' ')[1]);
 	// 	var keyNum = "." + $(this).attr('class').split(' ')[1];
 	// 	$(keyNum).
 	// });
 });
-
 
 /*
 In any text box one can insert and delete text at the cursor point.
