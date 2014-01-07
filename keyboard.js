@@ -30,6 +30,39 @@
 //SWIPE SIDE TO SIDE FOR DIFFERENT KEYBOARDS
 //TRY FADE IN NEXT KEYBOARD
 
+//STUFF THAT HAPPENS BEFORE THE KEYBOARD
+
+//jquery loaded? if not, load it
+if(typeof jQuery=='undefined') {
+    var headTag = document.getElementsByTagName("head")[0];
+    var jqTag = document.createElement('script');
+    jqTag.type = 'text/javascript';
+    jqTag.src = 'http://code.jquery.com/jquery-latest.min.js';
+    jqTag.onload = loadMathJax;
+    headTag.appendChild(jqTag);
+} else {
+     loadMathJax();
+}
+
+function loadMathJax(){
+	console.log("loaded jQuery");
+
+	if(typeof MathJax == 'undefined'){
+		var headTag = document.getElementsByTagName("head")[0];
+		var mjTag = document.createElement('script');
+		mjTag.type = 'text/javascript';
+		mjTag.src = 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=AM_HTMLorMML-full';
+		mjTag.onload = main;
+		headTag.appendChild(mjTag);
+	}else{
+		main();
+	}
+}
+
+function main(){
+console.log("loaded mathjax");
+
+
 // key code in, string out
 var mathMap = {
 	// row 																// chars in order of appear on keyboard (not related to shift key in any way)
@@ -40,11 +73,11 @@ var mathMap = {
 					4: {"pri": "", "sec": "", "sb": true}, // 5%
 					5: {"pri": "", "sec": "", "sb": true}, // 6^
 					6: {"pri": "", "sec": "", "sb": true}, // 7&
-					7: {"pri": "", "sec": "", "sb": true}, // 8*
+					7: {"pri": "dot", "sec": "", "sb": true}, // 8*
 					8: {"pri": "", "sec": "", "sb": true}, // 9(
 					9: {"pri": "", "sec": "", "sb": true}, // 0)
-					10: {"pri": "", "sec": "", "sb": true}, // -_
-					11: {"pri": "", "sec": "", "sb": true}, // =+
+					10: {"pri": "bar", "sec": "", "sb": true}, // -_
+					11: {"pri": "ne", "sec": "", "sb": true}, // =+
 					// row 2
 					12: {"pri": "", "sec": "", "sb": false}, // Qq
 					13: {"pri": "", "sec": "", "sb": false},	// Ww
@@ -54,8 +87,8 @@ var mathMap = {
 					17: {"pri": "", "sec": "", "sb": false}, // Yy
 					18: {"pri": "", "sec": "", "sb": false}, // Uu
 					19: {"pri": "int", "sec": "", "sb": false}, // Ii
-					20: {"pri": "", "sec": "", "sb": false}, // Oo
-					21: {"pri": "", "sec": "", "sb": false}, // Pp
+					20: {"pri": "infty", "sec": "", "sb": false}, // Oo
+					21: {"pri": "+-", "sec": "", "sb": false}, // Pp
 					22: {"pri": "", "sec": "", "sb": true}, // {[
 					23: {"pri": "", "sec": "", "sb": true}, // }]
 					//24: {"pri": 124, "sec": 92, "sb": false}, // |\ - not in this keyboard
@@ -73,14 +106,14 @@ var mathMap = {
 					34: {"pri": "", "sec": "", "sb": true}, // '"
 					// row 4
 					35: {"pri": "", "sec": "", "sb": false}, // Zz
-					36: {"pri": "", "sec": "", "sb": false}, // Xx
+					36: {"pri": "xx", "sec": "", "sb": false}, // Xx
 					37: {"pri": "", "sec": "", "sb": false}, // Cc
 					38: {"pri": "", "sec": "", "sb": false}, // Vv
 					39: {"pri": "", "sec": "", "sb": false}, // Bb
 					40: {"pri": "", "sec": "", "sb": false}, // Nn
 					41: {"pri": "", "sec": "", "sb": false}, // Mm
-					42: {"pri": "", "sec": "", "sb": true}, // <,
-					43: {"pri": "", "sec": "", "sb": true}, // >.
+					42: {"pri": "le", "sec": "", "sb": true}, // <,
+					43: {"pri": "ge", "sec": "", "sb": true}, // >.
 					44: {"pri": "", "sec": "", "sb": true}, // ?/
 }
 
@@ -249,23 +282,36 @@ $(function() {
 			var count = 0;
 			
 			// /var keys = Object.keys(layoutName).sort();
-			console.log(layoutValues, keyDivs);
 			$(".key").each(function(){
 					
-					var primaryChar = layoutValues.mapping[count].pri;
-					var showBoth = layoutValues.mapping[count].sb;
-					var secondaryChar = layoutValues.mapping[count].sec;
-					var keyValue;
-					if (!showBoth) {
-						keyValue = '<div class="keyValue standard">'+ String.fromCharCode(primaryChar) +'</div>';
-					} else {
-						keyValue = '<div class="keyValue show-both">' + String.fromCharCode(primaryChar) + '<br>' + String.fromCharCode(secondaryChar) + '</div>';
+					
+					if($(".0").hasClass("capslock")){
+						var primary = mathMap[count].pri;
+						var showBoth = mathMap[count].sb;
+						var secondary = mathMap[count].sec;
+						var keyValue;
+						if (!showBoth) {
+							keyValue = '<div class="keyValue math">`'+ primary +'`</div>';
+						} else {
+							keyValue = '<div class="keyValue math">`' + primary + '`<br>`' + secondary + '`</div>';
+						}
+					}else{
+						var primaryChar = layoutValues.mapping[count].pri;
+						var showBoth = layoutValues.mapping[count].sb;
+						var secondaryChar = layoutValues.mapping[count].sec;
+						var keyValue;
+						if (!showBoth) {
+							keyValue = '<div class="keyValue standard">'+ String.fromCharCode(primaryChar) +'</div>';
+						} else {
+							keyValue = '<div class="keyValue show-both">' + String.fromCharCode(primaryChar) + '<br>' + String.fromCharCode(secondaryChar) + '</div>';
+						}
 					}
-					$(this).append(keyValue);
+					$(this).html(keyValue);
 					count++;
 				
 
 			});
+			MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 		},
 		switchReferenceLayout: function(layoutName) {
 
@@ -305,6 +351,8 @@ $(function() {
 	//keyboard.keysIn("up-down");
 	keyboard.createLayout("US101", standardKeys);
 	keyboard.switchMainLayoutTo("US101");
+
+	
 	//Centering style notes for each key: 
 	// - we can center anything width wise easy: text-align: center; line-height: 55px;
 	// - vertical centering for normal text: vertical-align: middle;
@@ -312,11 +360,14 @@ $(function() {
 
 	//////////////EVENTS///////////////
 	$(".minKeyboard").toggle(function(){
+		console.log('toggle');
 		$('#keyboardContainer').animate({
 	      bottom: '-=342'
 	  }, 300);
 	  keyboard.keysOut("down-up");
 	},function(){
+		console.log('toggle');
+		return;
 		$('#keyboardContainer').animate({
 	      bottom: '+=342'
 	  }, 300);
@@ -347,14 +398,14 @@ $(function() {
 
 	$(document).keydown(function(e){
 		if(e.which == 20 && !$(".0").hasClass("capslock")){
-			console.log("caps on");
 			for(var i = 0; i <= 44; i++){
 				$("." + i).addClass("capslock");
 			}
+
+			keyboard.switchMainLayoutTo("US101");
 		}
 
 		if(e.which == 16){
-			console.log("shift down");
 			for(var i = 0; i <= 44; i++){
 				$("." + i).addClass("shifted");
 			}
@@ -363,32 +414,26 @@ $(function() {
 	
 	$(document).keyup(function(e){
 		if(!capLock(e) && e.which == 20 && $(".0").hasClass("capslock")){
-			console.log("caps off");
 			for(var i = 0; i <= 44; i++){
 				$("." + i).removeClass("capslock");
 			}
+
+			keyboard.switchMainLayoutTo("US101");
 		}
 
 		if(e.which == 16){
-			console.log("shift up");
 			for(var i = 0; i <= 44; i++){
 				$("." + i).removeClass("shifted");
 			}
 		}
 	});
-
-	/*$(document).keyup(function(e){
-		var whichKey = keyboard.layouts[currentLayout].mapping;
-		var key = keyboard.findKeyFromCharCode(e.which, whichKey);
-		console.log("KEY: ", key);
-
-		//console.log(whichKey);
-		$("." + key).removeClass("active");
-	});*/
 	
 	
-
-
+	$(document).mousedown(function(e){
+		if(e.target.id == "keyboardContainer" || e.target.className == "keysKeyboard"){
+			e.preventDefault();
+		}
+	});
 
 
 	$('.key').mousedown(function(e){
@@ -403,7 +448,7 @@ $(function() {
 	 		active(standardKeys.mapping[num].sec, num);
 	 	}
 
-	 	
+	 	e.preventDefault();
 	 });
 });
 
@@ -416,27 +461,29 @@ Write three melthods:
 - delete @ cursor position
 */ 
 
+//fired when button is clicked or key is pressed
 function active(charcode, num){
 	if($(".0").hasClass("capslock")){
-		insertAtCaret("input", mathMap[num].pri);
+		insertAtCaret(document.activeElement, " "+mathMap[num].pri);
 	}else{
-		insertAtCaret("input", String.fromCharCode(charcode));
+		insertAtCaret(document.activeElement, String.fromCharCode(charcode));
 	}
 	
 }
 
+//check if capslock is held when event e is fired
 function capLock(e){
  kc = e.keyCode?e.keyCode:e.which;
  sk = e.shiftKey?e.shiftKey:((kc == 16)?true:false);
  return ((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk);
 }
 
-function isPageHidden(){
-     return document.hidden || document.msHidden || document.webkitHidden || document.mozHidden;
-}
+//insert text into textarea at cursor position
+function insertAtCaret(txtarea,text) {
+	if(!((txtarea.tagName && txtarea.tagName.toLowerCase() == "textarea") || (txtarea.tagName && txtarea.tagName.toLowerCase() == "input" && txtarea.type.toLowerCase() == "text"))){
+		return;
+	}
 
-function insertAtCaret(areaId,text) {
-    var txtarea = document.getElementById(areaId);
     var scrollPos = txtarea.scrollTop;
     var strPos = 0;
     var br = ((txtarea.selectionStart || txtarea.selectionStart == '0') ? 
@@ -467,4 +514,5 @@ function insertAtCaret(areaId,text) {
     	txtarea.focus();
     }
     txtarea.scrollTop = scrollPos;
+}
 }

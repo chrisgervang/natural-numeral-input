@@ -79,8 +79,9 @@ body {
 }
 
 .key.capslock {
-	background-color: #A2AB58;
-	color: #ECECEA;
+	background-color: #C1E1A6;
+	color: #000000;
+	
 }
 
 .keyValue {
