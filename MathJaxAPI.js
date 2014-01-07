@@ -6,6 +6,7 @@ var Preview = {
     mjRunning: false,  // true when MathJax is processing
     oldText: null,     // used to check if an update is needed
 
+<<<<<<< HEAD
     //
     //  Get the preview and buffer DIV's
     //
@@ -13,7 +14,6 @@ var Preview = {
       this.preview = document.getElementById("MathPreview");
       this.buffer = document.getElementById("MathBuffer");
     },
-
     //
     //  Switch the buffer and preview, and display the right one.
     //  (We use visibility:hidden rather than display:none since

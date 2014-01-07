@@ -32,10 +32,10 @@ var participants = [];
 /* Server config */
 
 //Server's IP address
-app.set("ipaddr", "127.0.0.1");
+app.set("ipaddr", process.env.IP);
 
 //Server's port number
-app.set("port", 8080);
+app.set("port", process.env.PORT);
 
 //Specify the views folder
 app.set("views", __dirname + "/views");

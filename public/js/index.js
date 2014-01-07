@@ -66,7 +66,13 @@ function init() {
   socket.on('incomingMessage', function (data) {
     var message = data.message;
     var name = data.name;
+<<<<<<< HEAD
     $('#messages').prepend('<b>' + name + '</b><br />' + "`" + message + "`" + '<hr />');
+=======
+    $('#messages').prepend('<b>' + name + '</b><br />' + message + '<hr />');
+    Preview.init("messages");
+
+>>>>>>> 0a31acb5eabcde77a8d081e9635704ccc0aabbee
   });
 
   /*
