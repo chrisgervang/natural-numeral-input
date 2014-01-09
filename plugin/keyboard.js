@@ -29,6 +29,9 @@
 
 		</div>
 	</div>
+
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 */
 
 //FADE IN REFERENCE KEY AFTER A FEW SECONDS
@@ -39,18 +42,35 @@
 
 //put in html
 
+var bothloaded = 0;
 
-
+console.log("running ch4t");
 //jquery loaded? if not, load it
 if(typeof jQuery=='undefined') {
+	console.log("no jQuery, loading");
     var headTag = document.getElementsByTagName("head")[0];
-    var jqTag = document.createElement('script');
-    jqTag.type = 'text/javascript';
-    jqTag.src = 'http://code.jquery.com/jquery-latest.min.js';
-    jqTag.onload = loadMathJax;
-    headTag.appendChild(jqTag);
+    var jqTag1 = document.createElement('script');
+    jqTag1.type = 'text/javascript';
+    jqTag1.src = 'https://code.jquery.com/jquery-1.10.1.min.js';
+    jqTag1.onload = confirmBothLoaded;
+    headTag.appendChild(jqTag1);
+
+    var jqTag2 = document.createElement('script');
+    jqTag2.type = 'text/javascript';
+    jqTag2.src = 'https://code.jquery.com/jquery-migrate-1.2.1.min.js';
+    jqTag2.onload = confirmBothLoaded;
+    headTag.appendChild(jqTag2);
 } else {
+	console.log("jQuery loaded, proceeding");
      loadMathJax();
+}
+
+function confirmBothLoaded(){
+	if(bothloaded == 1){
+		loadMathJax();
+	}else{
+		bothloaded++;
+	}
 }
 
 function loadMathJax(){
@@ -440,7 +460,7 @@ $(function() {
 	});
 	
 	
-	$(document).mousedown(function(e){
+	$(document).click(function(e){
 		if(e.target.id == "keyboardContainer" || e.target.className == "keysKeyboard"){
 			e.preventDefault();
 		}

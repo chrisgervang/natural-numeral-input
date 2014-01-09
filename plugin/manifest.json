@@ -1,0 +1,17 @@
+{
+  "name": "Ch4t",
+  "version": "1.0",
+  "description": "A plugin to make sending equations over the internet easier.",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+    {
+        "matches": ["http://*/*", "https://*/*", "file://*/*"],
+        "css": ["keyboard.css"],
+        "js": ["inject.js"]
+    }
+	],
+  "web_accessible_resources": ["keyboard.js"]
+}
