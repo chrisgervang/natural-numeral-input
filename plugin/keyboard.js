@@ -32,6 +32,11 @@
 
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 	<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+
+	<script type="text/javascript" src="keyboard.js"></script>
+	<link rel="stylesheet" type="text/css" href="keyboard.css">
 */
 
 //FADE IN REFERENCE KEY AFTER A FEW SECONDS
@@ -77,6 +82,7 @@ function loadMathJax(){
 	console.log("loaded jQuery");
 
 	if(typeof MathJax == 'undefined'){
+		console.log("no MathJax, loading");
 		var headTag = document.getElementsByTagName("head")[0];
 		var mjTag = document.createElement('script');
 		mjTag.type = 'text/javascript';
@@ -84,6 +90,7 @@ function loadMathJax(){
 		mjTag.onload = main;
 		headTag.appendChild(mjTag);
 	}else{
+		console.log("MathJax loaded, proceeding");
 		main();
 	}
 }
@@ -97,55 +104,55 @@ $("body").append('<div id="keyboardContainer"><div class="minKeyboard"><div clas
 // key code in, string out
 var mathMap = {
 	// row 																// chars in order of appear on keyboard (not related to shift key in any way)
-					0: {"pri": "","sec": "", "sb": true}, // 1!
-					1: {"pri": "", "sec": "", "sb": true}, // 2@
-					2: {"pri": "", "sec": "", "sb": true}, // 3#
-					3: {"pri": "", "sec": "", "sb": true}, // 4$
-					4: {"pri": "", "sec": "", "sb": true}, // 5%
-					5: {"pri": "", "sec": "", "sb": true}, // 6^
-					6: {"pri": "", "sec": "", "sb": true}, // 7&
-					7: {"pri": "dot", "sec": "", "sb": true}, // 8*
-					8: {"pri": "", "sec": "", "sb": true}, // 9(
-					9: {"pri": "", "sec": "", "sb": true}, // 0)
-					10: {"pri": "bar", "sec": "", "sb": true}, // -_
-					11: {"pri": "ne", "sec": "", "sb": true}, // =+
+					0: {"pri": "","sec": "", "func": true}, // 1!
+					1: {"pri": "", "sec": "", "func": true}, // 2@
+					2: {"pri": "", "sec": "", "func": true}, // 3#
+					3: {"pri": "", "sec": "", "func": true}, // 4$
+					4: {"pri": "", "sec": "", "func": true}, // 5%
+					5: {"pri": "", "sec": "", "func": true}, // 6^
+					6: {"pri": "", "sec": "", "func": true}, // 7&
+					7: {"pri": "dot", "sec": "", "func": false}, // 8*
+					8: {"pri": "", "sec": "", "func": false}, // 9(
+					9: {"pri": "", "sec": "", "func": false}, // 0)
+					10: {"pri": "bar", "sec": "", "func": true}, // -_
+					11: {"pri": "ne", "sec": "", "func": false}, // =+
 					// row 2
-					12: {"pri": "", "sec": "", "sb": false}, // Qq
-					13: {"pri": "", "sec": "", "sb": false},	// Ww
-					14: {"pri": "", "sec": "", "sb": false}, // Ee
-					15: {"pri": "", "sec": "", "sb": false}, // Rr
-					16: {"pri": "", "sec": "", "sb": false}, // Tt
-					17: {"pri": "", "sec": "", "sb": false}, // Yy
-					18: {"pri": "", "sec": "", "sb": false}, // Uu
-					19: {"pri": "int", "sec": "", "sb": false}, // Ii
-					20: {"pri": "infty", "sec": "", "sb": false}, // Oo
-					21: {"pri": "+-", "sec": "", "sb": false}, // Pp
-					22: {"pri": "", "sec": "", "sb": true}, // {[
-					23: {"pri": "", "sec": "", "sb": true}, // }]
-					//24: {"pri": 124, "sec": 92, "sb": false}, // |\ - not in this keyboard
+					12: {"pri": "", "sec": "", "func": false}, // Qq
+					13: {"pri": "", "sec": "", "func": false},	// Ww
+					14: {"pri": "", "sec": "", "func": false}, // Ee
+					15: {"pri": "", "sec": "", "func": false}, // Rr
+					16: {"pri": "", "sec": "", "func": false}, // Tt
+					17: {"pri": "", "sec": "", "func": false}, // Yy
+					18: {"pri": "", "sec": "", "func": false}, // Uu
+					19: {"pri": "int", "sec": "", "func": false}, // Ii
+					20: {"pri": "infty", "sec": "", "func": false}, // Oo
+					21: {"pri": "+-", "sec": "", "func": false}, // Pp
+					22: {"pri": "", "sec": "", "func": true}, // {[
+					23: {"pri": "", "sec": "", "func": true}, // }]
+					//24: {"pri": 124, "sec": 92, "func": false}, // |\ - not in this keyboard
 					// row 3
-					24: {"pri": "", "sec": "", "sb": false}, // Aa
-					25: {"pri": "sqrt", "sec": "", "sb": false}, // Ss
-					26: {"pri": "", "sec": "", "sb": false}, // Dd
-					27: {"pri": "", "sec": "", "sb": false}, // Ff
-					28: {"pri": "", "sec": "", "sb": false}, // Gg
-					29: {"pri": "", "sec": "", "sb": false}, // Hh
-					30: {"pri": "", "sec": "", "sb": false}, // Jj
-					31: {"pri": "", "sec": "", "sb": false}, // Kk
-					32: {"pri": "", "sec": "", "sb": false}, // Ll
-					33: {"pri": "", "sec": "", "sb": true}, // ;:
-					34: {"pri": "", "sec": "", "sb": true}, // '"
+					24: {"pri": "", "sec": "", "func": false}, // Aa
+					25: {"pri": "sqrt", "sec": "", "func": true}, // Ss
+					26: {"pri": "", "sec": "", "func": false}, // Dd
+					27: {"pri": "", "sec": "", "func": false}, // Ff
+					28: {"pri": "", "sec": "", "func": false}, // Gg
+					29: {"pri": "", "sec": "", "func": false}, // Hh
+					30: {"pri": "", "sec": "", "func": false}, // Jj
+					31: {"pri": "", "sec": "", "func": false}, // Kk
+					32: {"pri": "", "sec": "", "func": false}, // Ll
+					33: {"pri": "", "sec": "", "func": false}, // ;:
+					34: {"pri": "", "sec": "", "func": false}, // '"
 					// row 4
-					35: {"pri": "", "sec": "", "sb": false}, // Zz
-					36: {"pri": "xx", "sec": "", "sb": false}, // Xx
-					37: {"pri": "", "sec": "", "sb": false}, // Cc
-					38: {"pri": "", "sec": "", "sb": false}, // Vv
-					39: {"pri": "", "sec": "", "sb": false}, // Bb
-					40: {"pri": "", "sec": "", "sb": false}, // Nn
-					41: {"pri": "", "sec": "", "sb": false}, // Mm
-					42: {"pri": "le", "sec": "", "sb": true}, // <,
-					43: {"pri": "ge", "sec": "", "sb": true}, // >.
-					44: {"pri": "", "sec": "", "sb": true}, // ?/
+					35: {"pri": "", "sec": "", "func": false}, // Zz
+					36: {"pri": "xx", "sec": "", "func": false}, // Xx
+					37: {"pri": "", "sec": "", "func": false}, // Cc
+					38: {"pri": "", "sec": "", "func": false}, // Vv
+					39: {"pri": "", "sec": "", "func": false}, // Bb
+					40: {"pri": "", "sec": "", "func": false}, // Nn
+					41: {"pri": "", "sec": "", "func": false}, // Mm
+					42: {"pri": "le", "sec": "", "func": false}, // <,
+					43: {"pri": "ge", "sec": "", "func": false}, // >.
+					44: {"pri": "", "sec": "", "func": false}, // ?/
 }
 
 var standardKeys = {
@@ -230,9 +237,9 @@ $(function() {
 			
 			keyCount = boxID;
 			
-			$('#keyboardContainer').animate({
+			/*$('#keyboardContainer').animate({
 	      		bottom: '+=342'
-	  	}, 500);
+	  		}, 500);*/
 	  	keyboard.keysIn("up-down");	
 		},
 		strobe: function () {
@@ -390,25 +397,33 @@ $(function() {
 	// - vertical centering for MathJax: margin-top: #%;
 
 	//////////////EVENTS///////////////
-	$(".minKeyboard").toggle(function(){
-		console.log('toggle');
-		$('#keyboardContainer').animate({
-	      bottom: '-=342'
-	  }, 300);
-	  keyboard.keysOut("down-up");
-	},function(){
-		console.log('toggle');
-		return;
-		$('#keyboardContainer').animate({
-	      bottom: '+=342'
-	  }, 300);
-	  keyboard.keysIn("up-down");
-	});
+	$(".minKeyboard").toggle(
+		function(){
+			console.log('toggle');
+			
+			$('#keyboardContainer').animate({
+		      bottom: '+=342'
+		  }, 300);
+		  keyboard.keysIn("up-down");
+		},
+		function(){
+			console.log('toggle');
+			$('#keyboardContainer').animate({
+		      bottom: '-=342'
+		  }, 300);
+		  keyboard.keysOut("down-up");
+		}
+	);
 
 	// '~' minimize/maximize keyboard
 	$(document).keypress(function(e) {
+
+
+
 		if (e.which == 126) {
 			$('.minKeyboard').click();
+		}else if(e.keyCode == 13){
+			rerenderMathJax();
 		}
 		
 		console.log(e.which);
@@ -494,12 +509,44 @@ Write three melthods:
 
 //fired when button is clicked or key is pressed
 function active(charcode, num){
-	if($(".0").hasClass("capslock")){
-		insertAtCaret(document.activeElement, " "+mathMap[num].pri);
-	}else{
-		insertAtCaret(document.activeElement, String.fromCharCode(charcode));
+	var str = ($(".0").hasClass("capslock")) ? mathMap[num].pri : String.fromCharCode(charcode);
+	console.log("str: " + str);
+
+
+	//do we need a buffering space for parsing?
+	var bufferchar = "";
+
+	if( $(".0").hasClass("capslock") ){
+		if(getCharacterPrecedingCaret() != " " && document.activeElement.value != ""){
+			console.log("buffering");
+			bufferchar = " ";
+		}
+
+		console.log("preceding: " + getCharacterPrecedingCaret());
+
+		
+
+		//is it a function key?
+		if(mathMap[num].func){
+			str += "()";
+		}
 	}
-	
+
+	str = bufferchar + str;
+
+	if(isTextSelected()){
+		console.log("selected");
+		replaceSelected(str);
+		if(mathMap[num].func && $(".0").hasClass("capslock")){
+			moveCursorBack(1);
+		}
+	}else{
+		console.log("not selected");
+		insertAtCaret(document.activeElement, str);
+		if(mathMap[num].func && $(".0").hasClass("capslock")){
+			moveCursorBack(1);
+		}
+	}
 }
 
 //check if capslock is held when event e is fired
@@ -511,7 +558,7 @@ function capLock(e){
 
 //insert text into textarea at cursor position
 function insertAtCaret(txtarea,text) {
-	if(!((txtarea.tagName && txtarea.tagName.toLowerCase() == "textarea") || (txtarea.tagName && txtarea.tagName.toLowerCase() == "input" && txtarea.type.toLowerCase() == "text"))){
+	if(!((txtarea.tagName && txtarea.tagName.toLowerCase() == "textarea") || (txtarea.tagName && ((txtarea.tagName.toLowerCase() == "input" && txtarea.type.toLowerCase() == "text") || txtarea.tagName.toLowerCase() == "div" )  ))){
 		return;
 	}
 
@@ -545,5 +592,93 @@ function insertAtCaret(txtarea,text) {
     	txtarea.focus();
     }
     txtarea.scrollTop = scrollPos;
+}
+
+function getSelectedText() {
+    var len = document.activeElement.val().length;
+    var start = $document.activeElement[0].selectionStart;
+    var end = document.activeElement[0].selectionEnd;
+    var sel = document.activeElement.val().substring(start, end);
+    return sel;
+}
+
+function isTextSelected(){
+	var input = document.activeElement;
+   var startPos = input.selectionStart;
+   var endPos = input.selectionEnd;
+   var doc = document.selection;
+
+   if(doc && doc.createRange().text.length != 0){
+      return true;
+   }else if (!doc && input.value.substring(startPos,endPos).length != 0){
+      return true;
+   }
+   return false;
+}
+
+function replaceSelected(newText){
+	var tmpVal = getSelectedText();
+	document.activeElement.val(document.activeElement.val().replace(tmpVal, newText));
+}
+
+function getCharacterPrecedingCaret() {
+	var pos = getCaretPosition();
+
+	var prec = document.activeElement.value.substring(pos - 1, pos);
+
+	return prec;
+}
+
+function getCaretPosition() {
+	var ctrl = document.activeElement;
+    var CaretPos = 0;   // IE Support
+    if (document.selection) {
+        ctrl.focus();
+        var Sel = document.selection.createRange();
+        Sel.moveStart('character', -ctrl.value.length);
+        CaretPos = Sel.text.length;
+    }
+    // Firefox support
+    else if (ctrl.selectionStart || ctrl.selectionStart == '0')
+		CaretPos = ctrl.selectionStart;
+	return (CaretPos);
+}
+
+function rerenderMathJax(){
+	MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+}
+
+function moveCursorBack(spaces){
+	var el = document.activeElement;
+	var cur_pos = 0;
+
+
+	if (el.selectionStart) { 
+            cur_pos = el.selectionStart; 
+        } else if (document.selection) { 
+            el.focus(); 
+        
+            var r = document.selection.createRange(); 
+            if (r != null) {
+                var re = el.createTextRange(), 
+                    rc = re.duplicate(); 
+                re.moveToBookmark(r.getBookmark()); 
+                rc.setEndPoint('EndToStart', re); 
+            
+                cur_pos = rc.text.length; 
+            }
+        }  
+        
+        if (el.setSelectionRange) {
+            el.focus();
+            el.setSelectionRange(cur_pos-spaces, cur_pos-spaces);
+        }
+          else if (el.createTextRange) {
+            var range = el.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', cur_pos-spaces);
+            range.moveStart('character', cur_pos-spaces);
+            range.select();
+        }
 }
 }
